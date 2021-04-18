@@ -9,6 +9,8 @@ const routeDir = require("./util/path");
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, "public")));
+
 const date = new Date();
 const closedSite = (req, res, next) => {
   if (
@@ -21,7 +23,6 @@ const closedSite = (req, res, next) => {
   else next();
 };
 
-app.use(express.static(path.join(__dirname, "public")));
 app.use("/", closedSite);
 app.use(homeRoute);
 app.use(ourServiceRoute);
